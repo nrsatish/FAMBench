@@ -1186,6 +1186,9 @@ def inference(
 
         if i == args.warmup_steps and args.fb5logger is not None:
             fb5logger.run_start()
+        
+        if i >= args.warmup_steps and args.fb5logger is not None:
+            fb5logger.batch_start()
 
         X_test, lS_o_test, lS_i_test, T_test, W_test, CBPP_test = unpack_batch(
             testBatch
@@ -1230,6 +1233,9 @@ def inference(
 
                 test_accu += A_test
                 test_samp += mbs_test
+
+        if i >= args.warmup_steps and args.fb5logger is not None:
+            fb5logger.batch_stop()
 
     if args.fb5logger is not None:
         fb5logger.run_stop(nbatches - args.warmup_steps, args.mini_batch_size)
