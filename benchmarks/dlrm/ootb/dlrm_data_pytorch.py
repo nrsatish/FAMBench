@@ -777,7 +777,7 @@ def make_random_data_and_loader(args, ln_emb, m_den,
         shuffle=False,
         num_workers=args.num_workers,
         collate_fn=collate_wrapper_random,
-        pin_memory=False,
+        pin_memory=True,
         drop_last=False,  # True
     )
 
@@ -787,7 +787,7 @@ def make_random_data_and_loader(args, ln_emb, m_den,
         shuffle=False,
         num_workers=args.num_workers,
         collate_fn=collate_wrapper_random,
-        pin_memory=False,
+        pin_memory=True,
         drop_last=False,  # True
     )
     return train_data, train_loader, test_data, test_loader
